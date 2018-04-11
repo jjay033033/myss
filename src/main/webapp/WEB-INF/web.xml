@@ -5,7 +5,7 @@
     <servlet>
         <display-name>MainServlet</display-name>
         <servlet-name>MainServlet</servlet-name>
-        <servlet-class>org.openshift.quickstarts.todolist.servlet.MainServlet</servlet-class>
+        <servlet-class>top.lmoon.servlet.MainServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
