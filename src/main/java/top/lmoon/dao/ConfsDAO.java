@@ -61,8 +61,8 @@ public class ConfsDAO extends BaseDAO{
 //			ps.setInt(1, 1);
 //			ps.setString(2, vo.getConf());
 //			int result = ps.executeUpdate();
-			String sql = "insert into confs(id,conf) values (1,?)";
-//			String sql = "update confs set conf=? where id=1";
+//			String sql = "insert into confs(id,conf) values (1,?)";
+			String sql = "update confs set conf=? where id=1";
 			return JdbcTemplate.executeUpdate(getConnection(), sql, new Object[]{conf});
 		} catch (Exception e) {
 //			logger.error("",e);
