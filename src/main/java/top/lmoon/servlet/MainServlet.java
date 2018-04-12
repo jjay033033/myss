@@ -1,5 +1,6 @@
 package top.lmoon.servlet;
 
+import top.lmoon.mail.MailUtil;
 import top.lmoon.service.TodoListService;
 import top.lmoon.vo.TodoEntry;
 
@@ -68,7 +69,9 @@ public class MainServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String summary = req.getParameter("summary");
         String description = req.getParameter("description");
-
+        summary = new String(summary.getBytes("ISO-8859-1"),"UTF-8");
+		System.out.println("summary---:"+summary);
+		MailUtil.asyncSendErrorEmail(summary);
         todoListService.addEntry(new TodoEntry(summary, description));
 
         resp.sendRedirect("index.html");
