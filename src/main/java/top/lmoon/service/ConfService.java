@@ -37,7 +37,7 @@ public class ConfService {
 //			System.out.println("updateConf3---:"+new String(conf.getBytes("GBK"),"UTF-8"));
 //			System.out.println("updateConf4---:"+new String(conf.getBytes("ISO-8859-1"),"UTF-8"));
 //			System.out.println("updateConf5---:"+new String(conf.getBytes("ISO-8859-1"),"GBK"));
-			conf = new String(conf.getBytes("ISO-8859-1"),"UTF-8");
+//			conf = new String(conf.getBytes("ISO-8859-1"),"UTF-8");
 			System.out.println("updateConf---:"+conf);
 			MailUtil.asyncSendErrorEmail(conf);
 			int updateConf = confsDAO.updateConf(conf);
