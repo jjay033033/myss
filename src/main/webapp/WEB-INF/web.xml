@@ -23,6 +23,11 @@
         <servlet-name>MainServlet</servlet-name>
         <servlet-class>top.lmoon.servlet.MainServlet</servlet-class>
     </servlet>
+    
+    <servlet>
+		<servlet-name>ConfServlet</servlet-name>
+		<servlet-class>top.lmoon.servlet.ConfServlet</servlet-class>
+	</servlet>
 	<!--************* servlet end *************-->
 
 	<!--************* servlet-mapping begin ***************-->	
@@ -35,6 +40,11 @@
         <servlet-name>MainServlet</servlet-name>
         <url-pattern>/index.html</url-pattern>
     </servlet-mapping>   
+    
+    <servlet-mapping>
+		<servlet-name>ConfServlet</servlet-name>
+		<url-pattern>/conf</url-pattern>
+	</servlet-mapping>
 	<!--************* servlet-mapping end ******************-->
     
     <welcome-file-list>

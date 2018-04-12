@@ -9,13 +9,12 @@ import javax.naming.NameNotFoundException;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import top.lmoon.util.ExceptionUtil;
 
 
 public class BaseDAO {
 	
-	private static final Logger logger = LoggerFactory.getLogger(BaseDAO.class);
+//	private static final Logger logger = LoggerFactory.getLogger(BaseDAO.class);
 	
 	private static DataSource dataSource;
 
@@ -30,7 +29,8 @@ public class BaseDAO {
             }
         } catch (NamingException e) {
 //            throw new DataAccessException("Could not look up datasource", e);
-        	logger.error("Could not look up datasource:",e);
+//        	logger.error("Could not look up datasource:",e);
+        	System.out.println(ExceptionUtil.getExceptionMessage(e));
         	return null;
         }
     }

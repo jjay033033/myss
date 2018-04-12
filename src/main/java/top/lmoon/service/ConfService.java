@@ -26,5 +26,14 @@ public class ConfService {
 		}
 		return JsonUtil.getFailedResponse("获取失败!");
 	}
+	
+	public String updateConf() {
+		try {
+			
+		}catch (Exception e) {
+			// TODO: handle exception
+		}
+		return JsonUtil.getFailedResponse("更新失败!");
+	}
 
 }
