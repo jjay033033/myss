@@ -9,8 +9,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import top.lmoon.shadowsupdate.util.UrlContent;
 import top.lmoon.shadowsupdate.vo.ConfVO;
@@ -23,7 +21,7 @@ import top.lmoon.shadowsupdate.vo.ServerConfigVO;
  */
 public class TextConfigListImpl implements ConfigList {
 
-	private static final Logger logger = LoggerFactory.getLogger(TextConfigListImpl.class);
+//	private static final Logger logger = LoggerFactory.getLogger(TextConfigListImpl.class);
 
 	// private static final String FREE_URL = "https://www.ishadowsocks.xyz";
 	// private static final String beginStr = "<section id=\"free\">";
@@ -109,8 +107,8 @@ public class TextConfigListImpl implements ConfigList {
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println(content);
-			logger.error("",e);
-			logger.error(content);
+//			logger.error("",e);
+//			logger.error(content);
 		}
 
 		return list;

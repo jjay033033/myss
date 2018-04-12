@@ -3,9 +3,6 @@
  */
 package top.lmoon.dao;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import top.lmoon.jdbc.JdbcTemplate;
 import top.lmoon.shadowsupdate.vo.ConfWebVO;
 
@@ -16,7 +13,7 @@ import top.lmoon.shadowsupdate.vo.ConfWebVO;
  */
 public class ConfsDAO extends BaseDAO{
 	
-	private static final Logger logger = LoggerFactory.getLogger(ConfsDAO.class);
+//	private static final Logger logger = LoggerFactory.getLogger(ConfsDAO.class);
 	
 //	private DataSource dataSource;
 	
@@ -32,7 +29,8 @@ public class ConfsDAO extends BaseDAO{
 			String sql = "SELECT conf FROM confs where id=1";
 			return JdbcTemplate.queryForString(getConnection(), sql, new Object[0]);			
 		} catch (Exception e) {
-			logger.error("",e);
+//			logger.error("",e);
+			e.printStackTrace();
 			throw new RuntimeException(e);
 		}
 	}
@@ -43,7 +41,8 @@ public class ConfsDAO extends BaseDAO{
 			return JdbcTemplate.executeUpdate(getConnection(), sql, new Object[0]);
 		} catch (Exception e) {
 			System.err.println(e);
-			logger.error("", e);
+//			logger.error("", e);
+			e.printStackTrace();
 			throw new RuntimeException(e);
 		}
 	}
@@ -62,10 +61,12 @@ public class ConfsDAO extends BaseDAO{
 //			ps.setInt(1, 1);
 //			ps.setString(2, vo.getConf());
 //			int result = ps.executeUpdate();
-			String sql = "update confs set conf=? where id=1";
+			String sql = "insert into confs(id,conf) values (1,'"+conf+"')";
+//			String sql = "update confs set conf=? where id=1";
 			return JdbcTemplate.executeUpdate(getConnection(), sql, new Object[]{conf});
 		} catch (Exception e) {
-			logger.error("",e);
+//			logger.error("",e);
+			e.printStackTrace();
 			throw new RuntimeException(e);
 		}
 	}

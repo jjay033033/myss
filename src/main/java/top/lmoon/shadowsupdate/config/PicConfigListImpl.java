@@ -7,8 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import top.lmoon.shadowsupdate.qrcode.Base64Coder;
 import top.lmoon.shadowsupdate.qrcode.QRcoder;
@@ -24,7 +22,7 @@ import top.lmoon.shadowsupdate.vo.ServerConfigVO;
  */
 public class PicConfigListImpl implements ConfigList{
 	
-	private static final Logger logger = LoggerFactory.getLogger(PicConfigListImpl.class);
+//	private static final Logger logger = LoggerFactory.getLogger(PicConfigListImpl.class);
 	
 //	private static final String FREE_URL = "https://www.shadowsocks8.biz/";
 //	private static final String beginStr = "<section id=\"free\"";
@@ -75,7 +73,7 @@ public class PicConfigListImpl implements ConfigList{
 			}
 		}catch(Exception e){
 			e.printStackTrace();
-			logger.error("",e);
+//			logger.error("",e);
 		}
 		return list;
 	}
@@ -101,7 +99,9 @@ public class PicConfigListImpl implements ConfigList{
 				}
 			}
 		}catch(Exception e){
-			logger.error("str:"+str,e);
+//			logger.error("str:"+str,e);
+			System.out.println("str:"+str);
+			e.printStackTrace();
 		}
 		return null;
 	}

@@ -7,9 +7,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import top.lmoon.dao.ConfsDAO;
 import top.lmoon.shadowsupdate.SysConstants;
 import top.lmoon.shadowsupdate.util.XmlUtil;
@@ -17,7 +14,7 @@ import top.lmoon.shadowsupdate.vo.ServerConfigVO;
 
 public class XmlConfig {
 
-	private static final Logger logger = LoggerFactory.getLogger(XmlConfig.class);
+//	private static final Logger logger = LoggerFactory.getLogger(XmlConfig.class);
 
 	// private static XmlConfig xmlConfig;
 
@@ -63,13 +60,13 @@ public class XmlConfig {
 			if (map == null || map.isEmpty()) {
 				throw new FileNotFoundException();
 			}
-			logger.info("config.xml is updated！");
+//			logger.info("config.xml is updated！");
 			initServerMap();
 			ConfigListFactory.init();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			logger.error("config.xml初始化失败:", e);
+//			logger.error("config.xml初始化失败:", e);
 		}
 	}
 
@@ -126,7 +123,7 @@ public class XmlConfig {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			logger.error("servers初始化失败:", e);
+//			logger.error("servers初始化失败:", e);
 		}
 	}
 
@@ -161,7 +158,7 @@ public class XmlConfig {
 			int port = Integer.parseInt(getValue(LOCAL_PORT));
 			return port;
 		} catch (NumberFormatException e) {
-			logger.error("",e);	
+//			logger.error("",e);	
 			throw new RuntimeException(e);
 		}
 	}
@@ -174,7 +171,7 @@ public class XmlConfig {
 			long sleepTime = Long.parseLong(getValue(SLEEP_TIME));
 			return sleepTime;
 		} catch (NumberFormatException e) {
-			logger.error("",e);	
+//			logger.error("",e);	
 		}
 		return 300;
 	}
@@ -184,7 +181,7 @@ public class XmlConfig {
 			int from = Integer.parseInt(getValue(GET_FROM));
 			return from;
 		} catch (NumberFormatException e) {
-			logger.error("",e);	
+//			logger.error("",e);	
 			throw new RuntimeException(e);
 		}
 	}

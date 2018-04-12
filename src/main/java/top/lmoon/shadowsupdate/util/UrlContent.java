@@ -11,9 +11,6 @@ import java.net.URL;
 
 import javax.net.ssl.HttpsURLConnection;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import top.lmoon.shadowsupdate.SysConstants;
 import top.lmoon.shadowsupdate.config.XmlConfig;
 import top.lmoon.shadowsupdate.vo.ServerConfigVO;
@@ -25,7 +22,7 @@ import top.lmoon.shadowsupdate.vo.ServerConfigVO;
  */
 public class UrlContent {
 	
-	private static final Logger logger = LoggerFactory.getLogger(UrlContent.class);
+//	private static final Logger logger = LoggerFactory.getLogger(UrlContent.class);
 	
 	private static final int CONNECT_TIME_OUT = 3000;
 	
@@ -36,7 +33,7 @@ public class UrlContent {
 			public void changeUrl(String oldUrl, String newUrl) {
 				FileUtil.writeFileReplaceWord(SysConstants.CONFIG_PATH, oldUrl, newUrl);
 				XmlConfig.resetInstance();
-				logger.info("'config.xml' changed!: "+oldUrl+" to "+newUrl);
+//				logger.info("'config.xml' changed!: "+oldUrl+" to "+newUrl);
 			}
 		});
 	}
@@ -90,7 +87,8 @@ public class UrlContent {
 			}
 			return sb.toString();
 		} catch (Exception e) {
-			logger.error("连接失败："+urlStr, e);
+//			logger.error("连接失败："+urlStr, e);
+			e.printStackTrace();
 		} finally {
 			try {
 				if (br != null) {

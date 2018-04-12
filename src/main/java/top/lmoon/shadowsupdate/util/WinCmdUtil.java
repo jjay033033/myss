@@ -3,12 +3,9 @@ package top.lmoon.shadowsupdate.util;
 import java.io.IOException;
 import java.util.Scanner;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 public class WinCmdUtil {
 	
-	private static final Logger logger = LoggerFactory.getLogger(WinCmdUtil.class);
+//	private static final Logger logger = LoggerFactory.getLogger(WinCmdUtil.class);
 	
 	private static Process process = null;
 	
@@ -29,7 +26,7 @@ public class WinCmdUtil {
 			}
 			return false;
 		} catch (IOException e) {
-			logger.error("restartExe:", e);
+//			logger.error("restartExe:", e);
 			e.printStackTrace();
 			return true;
 		}
@@ -42,7 +39,7 @@ public class WinCmdUtil {
 			}
 			process = Runtime.getRuntime().exec("\"" + pathname + "\"");
 		} catch (IOException e) {
-			logger.error("restartExe:", e);
+//			logger.error("restartExe:", e);
 			e.printStackTrace();
 		}
 	}
@@ -71,7 +68,7 @@ public class WinCmdUtil {
 				}
 			}
 		} catch (IOException e) {
-			logger.error("kill:", e);
+//			logger.error("kill:", e);
 			e.printStackTrace();
 		}
 	}

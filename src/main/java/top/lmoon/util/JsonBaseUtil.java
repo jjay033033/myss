@@ -12,11 +12,9 @@ import org.codehaus.jackson.JsonParser;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.type.TypeReference;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public final class JsonBaseUtil {
-	private static Logger logger = LoggerFactory.getLogger(JsonBaseUtil.class);
+//	private static Logger logger = LoggerFactory.getLogger(JsonBaseUtil.class);
 	private static JsonFactory jsonFactory = new JsonFactory();
 	private static ObjectMapper mapper = null;
 

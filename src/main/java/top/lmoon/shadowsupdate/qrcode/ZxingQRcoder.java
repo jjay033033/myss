@@ -16,9 +16,6 @@ import java.util.Map;
 
 import javax.imageio.ImageIO;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Binarizer;
 import com.google.zxing.BinaryBitmap;
@@ -41,7 +38,7 @@ import com.google.zxing.common.HybridBinarizer;
  */
 public class ZxingQRcoder implements QRcoder {
 
-	private static final Logger logger = LoggerFactory.getLogger(ZxingQRcoder.class);
+//	private static final Logger logger = LoggerFactory.getLogger(ZxingQRcoder.class);
 
 	/*
 	 * (non-Javadoc)
@@ -58,7 +55,7 @@ public class ZxingQRcoder implements QRcoder {
 			MatrixToImageWriter.writeToPath(bitMatrix, format, path);// 输出图像
 		} catch (Exception e) {
 			e.printStackTrace();
-			logger.error("", e);
+//			logger.error("", e);
 		}
 
 	}
@@ -82,7 +79,7 @@ public class ZxingQRcoder implements QRcoder {
 //			ImageIO.write(bufferedImage, format, os);
 		} catch (Exception e) {
 			e.printStackTrace();
-			logger.error("", e);
+//			logger.error("", e);
 		}
 	}
 

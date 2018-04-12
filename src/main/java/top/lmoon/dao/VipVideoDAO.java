@@ -8,9 +8,6 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import top.lmoon.jdbc.JdbcTemplate;
 import top.lmoon.jdbc.RowMapper;
 import top.lmoon.vo.VipVideoVO;
@@ -22,7 +19,7 @@ import top.lmoon.vo.VipVideoVO;
  */
 public class VipVideoDAO extends BaseDAO{
 
-	private static final Logger logger = LoggerFactory.getLogger(VipVideoDAO.class);
+//	private static final Logger logger = LoggerFactory.getLogger(VipVideoDAO.class);
 
 //	private DataSource dataSource;
 
@@ -41,7 +38,8 @@ public class VipVideoDAO extends BaseDAO{
 				}
 			}, new Object[]{pageSize,(pageNo-1)*pageSize});
 		} catch (Exception e) {
-			logger.error("", e);
+//			logger.error("", e);
+			e.printStackTrace();
 			throw new RuntimeException(e);
 		}
 	}
@@ -51,7 +49,8 @@ public class VipVideoDAO extends BaseDAO{
 			String sql = "SELECT count(1) FROM vipvideo";
 			return JdbcTemplate.queryForInt(getConnection(), sql, new Object[0]);
 		} catch (Exception e) {
-			logger.error("", e);
+//			logger.error("", e);
+			e.printStackTrace();
 			throw new RuntimeException(e);
 		}
 	}
@@ -63,7 +62,7 @@ public class VipVideoDAO extends BaseDAO{
 			return JdbcTemplate.executeUpdate(getConnection(), sql, new Object[] { remark });
 		} catch (Exception e) {
 			System.err.println(e);
-			logger.error("", e);
+//			logger.error("", e);
 			throw new RuntimeException(e);
 		}
 	}
@@ -74,7 +73,7 @@ public class VipVideoDAO extends BaseDAO{
 			return JdbcTemplate.executeUpdate(getConnection(), sql, new Object[0]);
 		} catch (Exception e) {
 			System.err.println(e);
-			logger.error("", e);
+//			logger.error("", e);
 			throw new RuntimeException(e);
 		}
 	}
@@ -85,7 +84,8 @@ public class VipVideoDAO extends BaseDAO{
 			return JdbcTemplate.executeUpdate(getConnection(), sql, new Object[0]);
 		} catch (Exception e) {
 			System.err.println(e);
-			logger.error("", e);
+//			logger.error("", e);
+			e.printStackTrace();
 			throw new RuntimeException(e);
 		}
 	}
@@ -97,7 +97,7 @@ public class VipVideoDAO extends BaseDAO{
 			return JdbcTemplate.executeUpdate(getConnection(), sql, new Object[0]);
 		} catch (Exception e) {
 			System.err.println(e);
-			logger.error("", e);
+//			logger.error("", e);
 			throw new RuntimeException(e);
 		}
 	}

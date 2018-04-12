@@ -7,12 +7,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 public class FileUtil {
 	
-	private static final Logger logger = LoggerFactory.getLogger(FileUtil.class);
+//	private static final Logger logger = LoggerFactory.getLogger(FileUtil.class);
 	
 	public static String readFile(String pathname) {
 		File file = null;
@@ -35,7 +32,7 @@ public class FileUtil {
 				sb.append("\n");
 			}
 		} catch (Exception e) {
-			logger.error("readFile:", e);
+//			logger.error("readFile:", e);
 			e.printStackTrace();
 		} finally {
 			try {
@@ -69,7 +66,7 @@ public class FileUtil {
 			fos.write(content.getBytes("utf-8"));
 			fos.flush();
 		} catch (Exception e) {
-			logger.error("writeFile:", e);
+//			logger.error("writeFile:", e);
 			e.printStackTrace();
 		} finally {
 			try {
