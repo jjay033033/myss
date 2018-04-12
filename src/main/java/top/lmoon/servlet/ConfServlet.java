@@ -33,8 +33,8 @@ public class ConfServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		PrintWriter out = null;
 		try {
-			req.setCharacterEncoding("UTF-8");
-			resp.setCharacterEncoding("UTF-8");
+//			req.setCharacterEncoding("UTF-8");
+//			resp.setCharacterEncoding("UTF-8");
 			//resp.setContentType("text/html;charset=UTF-8");
 			String action = ParamUtil.getParameter(req, "action", "");
 			String conf = ParamUtil.getParameter(req, "conf", "");

@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import top.lmoon.dao.ConfsDAO;
+import top.lmoon.shadowsupdate.config.XmlConfig;
 import top.lmoon.util.ExceptionUtil;
 import top.lmoon.util.JsonUtil;
 
@@ -30,6 +31,7 @@ public class ConfService {
 		try {
 			int updateConf = confsDAO.updateConf(conf);
 			if(updateConf>0) {
+				XmlConfig.resetInstance();
 				return JsonUtil.getSuccessResponse();
 			}
 		}catch (Exception e) {
