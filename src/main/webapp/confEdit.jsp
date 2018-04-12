@@ -7,12 +7,12 @@
 	String conf = "";
 	ConfService confService = new ConfService();
 	String result = confService.getConf();
-	System.out.print(result);
+	System.out.println(result);
 	JsonResponse jr = JsonResponse.newInstance(result);
 	if(jr.isSuccess()){
-		System.out.print("iiiiiiiii");
+		System.out.println("iiiiiiiii");
 		conf = MapUtils.getString(jr.getDataMap(), "conf", "");
-		System.out.print("conf:"+conf);
+		System.out.println("conf:"+conf);
 	}
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -22,6 +22,7 @@
 <title>conf</title>
 </head>
 <body>
+	<div><%=result %></div>
 	<form id="cform" action="/conf" method="post">
 		<input type="hidden" name="action" value="update" />
 		<textarea cols="60" rows="40"
