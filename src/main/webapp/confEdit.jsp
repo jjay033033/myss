@@ -7,9 +7,12 @@
 	String conf = "";
 	ConfService confService = new ConfService();
 	String result = confService.getConf();
+	System.out.print(result);
 	JsonResponse jr = JsonResponse.newInstance(result);
 	if(jr.isSuccess()){
+		System.out.print("iiiiiiiii");
 		conf = MapUtils.getString(jr.getDataMap(), "conf", "");
+		System.out.print("conf:"+conf);
 	}
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
