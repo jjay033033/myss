@@ -38,6 +38,7 @@ div .list {
 	%>
 	<div>Hello LMoon!Failed to get ss account...</div>
 	<%
+		return;
 		}
 		for(Map<String, Object> entry:list){
 			String id = MapUtils.getString(entry, "id", "");
