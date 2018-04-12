@@ -31,7 +31,7 @@ public class MainServlet extends HttpServlet {
     }
 
     private void writeHtml(PrintWriter out) throws IOException {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(getServletContext().getResourceAsStream("/WEB-INF/index.html"), "UTF-8"));
+        BufferedReader reader = new BufferedReader(new InputStreamReader(getServletContext().getResourceAsStream("/index.html"), "UTF-8"));
         try {
             String line;
             boolean insideLoop = false;
