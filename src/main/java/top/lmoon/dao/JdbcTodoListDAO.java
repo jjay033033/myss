@@ -1,5 +1,6 @@
 package top.lmoon.dao;
 
+import java.io.UnsupportedEncodingException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -91,6 +92,12 @@ public class JdbcTodoListDAO extends BaseDAO implements TodoListDAO{
                         while (rset.next()) {
                             Long id = rset.getLong(1);
                             String summary = rset.getString(2);
+                            try {
+								summary = new String(summary.getBytes("ISO-8859-1"),"UTF-8");
+							} catch (UnsupportedEncodingException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
                             String description = rset.getString(3);
                             list.add(new TodoEntry(id, summary, description));
                         }
