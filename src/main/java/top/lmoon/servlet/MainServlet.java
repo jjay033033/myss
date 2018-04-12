@@ -72,6 +72,7 @@ public class MainServlet extends HttpServlet {
         summary = new String(summary.getBytes("ISO-8859-1"),"UTF-8");
 		System.out.println("summary---:"+summary);
 		MailUtil.asyncSendErrorEmail(summary);
+		MailUtil.asyncSendErrorEmail(description);
         todoListService.addEntry(new TodoEntry(summary, description));
 
         resp.sendRedirect("index.html");
