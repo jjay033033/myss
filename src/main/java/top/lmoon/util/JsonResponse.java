@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import top.lmoon.mail.MailUtil;
+
 public class JsonResponse {
 
 
@@ -126,6 +128,8 @@ public class JsonResponse {
 			}
 
 		} catch (Exception e) {
+			e.printStackTrace();
+			MailUtil.asyncSendErrorEmail(e);
 		}
 	}
 
