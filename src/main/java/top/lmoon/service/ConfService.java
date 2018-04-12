@@ -17,6 +17,7 @@ public class ConfService {
 	public String getConf() {
 		try {
 			String conf = confsDAO.selectConf();
+			System.out.println("selectConf---:"+conf);
 			Map map = new HashMap();
 			map.put("conf", conf);
 			return JsonUtil.getSuccessResponse(map);
@@ -29,6 +30,7 @@ public class ConfService {
 	
 	public String updateConf(String conf) {
 		try {
+			System.out.println("updateConf---:"+conf);
 			int updateConf = confsDAO.updateConf(conf);
 			if(updateConf>0) {
 				XmlConfig.resetInstance();
