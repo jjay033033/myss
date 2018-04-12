@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import top.lmoon.jdbc.CloseUtil;
 import top.lmoon.service.ConfService;
 import top.lmoon.util.ParamUtil;
+import top.lmoon.util.StringUtil;
 
 public class ConfServlet extends HttpServlet {
 
@@ -36,12 +37,17 @@ public class ConfServlet extends HttpServlet {
 		PrintWriter out = null;
 		try {
 			String action = ParamUtil.getParameter(req, "action", "");
+			String conf = ParamUtil.getParameter(req, "conf", "");
 			out = resp.getWriter();
 			if ("select".equals(action)) {
-				out.println(confService.getConf());
+				out.print(confService.getConf());
 				return;
 			} else if ("update".equals(action)) {
-
+				if(StringUtil.isNullOrBlank(conf)) {
+					out.print("conf is empty!");
+					return;
+				}
+				out.print(confService.updateConf(conf));
 			}
 			out.print("hello world!");
 			return;

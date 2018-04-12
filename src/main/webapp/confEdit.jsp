@@ -19,9 +19,10 @@
 <title>conf</title>
 </head>
 <body>
-	<form id="cform" action="#" method="post">
+	<form id="cform" action="/conf" method="post">
+		<input type="hidden" name="action" value="update" />
 		<textarea cols="60" rows="40"
-			style="margin: 0px; padding: 0px; width: 100%;"><%=conf %></textarea>
+			style="margin: 0px; padding: 0px; width: 100%;" name="conf"><%=conf %></textarea>
 		<!-- <input type="text" th:field="*{conf}"/> -->
 		<input type="submit" />
 	</form>

@@ -3,15 +3,13 @@ package top.lmoon.service;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import top.lmoon.dao.ConfsDAO;
+import top.lmoon.util.ExceptionUtil;
 import top.lmoon.util.JsonUtil;
 
 public class ConfService {
 	
-	private static final Logger logger = LoggerFactory.getLogger(ConfService.class);
+//	private static final Logger logger = LoggerFactory.getLogger(ConfService.class);
 	
 	private static ConfsDAO confsDAO = new ConfsDAO();
 	
@@ -22,14 +20,18 @@ public class ConfService {
 			map.put("conf", conf);
 			return JsonUtil.getSuccessResponse(map);
 		} catch (Exception e) {
-			logger.error("",e);
+//			logger.error("",e);
+			System.out.println(ExceptionUtil.getExceptionMessage(e));
 		}
 		return JsonUtil.getFailedResponse("获取失败!");
 	}
 	
-	public String updateConf() {
+	public String updateConf(String conf) {
 		try {
-			
+			int updateConf = confsDAO.updateConf(conf);
+			if(updateConf>0) {
+				return JsonUtil.getSuccessResponse();
+			}
 		}catch (Exception e) {
 			// TODO: handle exception
 		}
