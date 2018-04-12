@@ -2,16 +2,45 @@
 <web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
 
-    <servlet>
+    
+
+   
+    
+    <!--************* servlet begin ***********-->    
+	<servlet>
+		<servlet-name>StartInit</servlet-name>
+		<servlet-class>top.lmoon.servlet.InitServlet</servlet-class>
+		<init-param>
+			<param-name>myParam</param-name>
+			<param-value>hello</param-value>
+		</init-param>
+		<load-on-startup>0</load-on-startup>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>TestServlet</servlet-name>
+		<servlet-class>top.lmoon.servlet.TestServlet</servlet-class>
+	</servlet>
+	
+	<servlet>
         <display-name>MainServlet</display-name>
         <servlet-name>MainServlet</servlet-name>
         <servlet-class>top.lmoon.servlet.MainServlet</servlet-class>
     </servlet>
+	<!--************* servlet end *************-->
 
-    <servlet-mapping>
+	<!--************* servlet-mapping begin ***************-->	
+	<servlet-mapping>
+		<servlet-name>TestServlet</servlet-name>
+		<url-pattern>/test</url-pattern>
+	</servlet-mapping>
+	
+	 <servlet-mapping>
         <servlet-name>MainServlet</servlet-name>
         <url-pattern>/index.html</url-pattern>
-    </servlet-mapping>
+    </servlet-mapping>   
+	<!--************* servlet-mapping end ******************-->
+    
     <welcome-file-list>
         <welcome-file>index.html</welcome-file>
     </welcome-file-list>

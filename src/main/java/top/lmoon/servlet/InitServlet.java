@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import top.lmoon.Main;
 import top.lmoon.mail.MailUtil;
 
 public class InitServlet extends HttpServlet{
@@ -21,6 +22,7 @@ public class InitServlet extends HttpServlet{
 	public void init(ServletConfig config) throws ServletException {
 		System.out.println("server start!");
 		MailUtil.asyncSendErrorEmail("ss:server start!");
+		Main.main(new String[] {});
 	}
 
 	@Override
