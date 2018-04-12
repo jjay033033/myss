@@ -2,7 +2,7 @@ package top.lmoon.dao;
 
 import java.util.List;
 
-import top.lmoon.model.TodoEntry;
+import top.lmoon.vo.TodoEntry;
 
 /**
  *

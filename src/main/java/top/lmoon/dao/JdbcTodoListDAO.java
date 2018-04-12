@@ -1,44 +1,25 @@
 package top.lmoon.dao;
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NameNotFoundException;
-import javax.naming.NamingException;
-import javax.sql.DataSource;
-
-import top.lmoon.model.TodoEntry;
-
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
+import top.lmoon.vo.TodoEntry;
 
 /**
  *  TODO: proper exception handling
  *  TODO: initialize schema whenever necessary (what if db is not persistent and is restarted while app is running)
  */
-public class JdbcTodoListDAO implements TodoListDAO {
-
-    private final DataSource dataSource;
-
-    public JdbcTodoListDAO() {
-        dataSource = lookupDataSource();
-        initializeSchemaIfNeeded();
-    }
-
-    private DataSource lookupDataSource() {
-        try {
-            Context initialContext = new InitialContext();
-            try {
-                return (DataSource) initialContext.lookup(System.getenv("DB_JNDI"));
-            } catch (NameNotFoundException e) {
-                Context envContext = (Context) initialContext.lookup("java:comp/env");  // Tomcat places datasources inside java:comp/env
-                return (DataSource) envContext.lookup(System.getenv("DB_JNDI"));
-            }
-        } catch (NamingException e) {
-            throw new DataAccessException("Could not look up datasource", e);
-        }
-    }
+public class JdbcTodoListDAO extends BaseDAO implements TodoListDAO{
+	
+	public JdbcTodoListDAO() {
+		initializeSchemaIfNeeded();
+	}
 
     private void initializeSchemaIfNeeded() {
         try {
@@ -128,11 +109,6 @@ public class JdbcTodoListDAO implements TodoListDAO {
         }
     }
 
-    public Connection getConnection() throws SQLException {
-        return getDataSource().getConnection();
-    }
 
-    private DataSource getDataSource() {
-        return dataSource;
-    }
+    
 }

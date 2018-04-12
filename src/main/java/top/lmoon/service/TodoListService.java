@@ -2,7 +2,7 @@ package top.lmoon.service;
 
 import top.lmoon.dao.JdbcTodoListDAO;
 import top.lmoon.dao.TodoListDAO;
-import top.lmoon.model.TodoEntry;
+import top.lmoon.vo.TodoEntry;
 
 import java.util.List;
 

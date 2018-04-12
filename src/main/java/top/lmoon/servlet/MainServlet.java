@@ -1,7 +1,7 @@
 package top.lmoon.servlet;
 
-import top.lmoon.model.TodoEntry;
 import top.lmoon.service.TodoListService;
+import top.lmoon.vo.TodoEntry;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -18,7 +18,11 @@ import java.io.PrintWriter;
  */
 public class MainServlet extends HttpServlet {
 
-    private TodoListService todoListService = new TodoListService();
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 5870548111514382731L;
+	private TodoListService todoListService = new TodoListService();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

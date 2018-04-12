@@ -1,4 +1,4 @@
-package top.lmoon.model;
+package top.lmoon.vo;
 
 import java.io.Serializable;
 
