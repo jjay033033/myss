@@ -30,6 +30,7 @@ public class ConfService {
 	
 	public String updateConf(String conf) {
 		try {
+			conf = new String(conf.getBytes("ISO-8859-1"),"UTF-8");
 			System.out.println("updateConf---:"+conf);
 			int updateConf = confsDAO.updateConf(conf);
 			if(updateConf>0) {

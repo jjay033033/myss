@@ -18,6 +18,9 @@ import java.util.Properties;
  * JavaMail 版本: 1.6.0 JDK 版本: JDK 1.7 以上（必须）
  */
 public class MailUtil {
+	
+	private static final String sendUserName = "LMoon's openshift app";
+	private static final String title = "openshift之catch信";
 
 	// 发件人的 邮箱 和 密码（替换为自己的邮箱和密码）
 	// PS: 某些邮箱服务器为了增加邮箱本身密码的安全性，给 SMTP 客户端设置了独立密码（有的邮箱称为“授权码”）,
@@ -50,7 +53,7 @@ public class MailUtil {
 			@Override
 			public void run() {
 				try {
-					sendEmail(receiveMailAccount, "LMoon's heroku app","乱月同学", "神之catch信", content);
+					sendEmail(receiveMailAccount, sendUserName,"乱月同学", title, content);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

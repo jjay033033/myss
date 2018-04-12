@@ -16,17 +16,23 @@
 	<servlet>
 		<servlet-name>TestServlet</servlet-name>
 		<servlet-class>top.lmoon.servlet.TestServlet</servlet-class>
-	</servlet>
-	
+	</servlet>	
 	<servlet>
         <display-name>MainServlet</display-name>
         <servlet-name>MainServlet</servlet-name>
         <servlet-class>top.lmoon.servlet.MainServlet</servlet-class>
-    </servlet>
-    
+    </servlet>   
     <servlet>
 		<servlet-name>ConfServlet</servlet-name>
 		<servlet-class>top.lmoon.servlet.ConfServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>QrcodeServlet</servlet-name>
+		<servlet-class>top.lmoon.servlet.QrcodeServlet</servlet-class>
+	</servlet>	
+	<servlet>
+		<servlet-name>SsInfoServlet</servlet-name>
+		<servlet-class>top.lmoon.servlet.SsInfoServlet</servlet-class>
 	</servlet>
 	<!--************* servlet end *************-->
 
@@ -34,16 +40,22 @@
 	<servlet-mapping>
 		<servlet-name>TestServlet</servlet-name>
 		<url-pattern>/test</url-pattern>
-	</servlet-mapping>
-	
+	</servlet-mapping>	
 	 <servlet-mapping>
         <servlet-name>MainServlet</servlet-name>
         <url-pattern>/index.html</url-pattern>
-    </servlet-mapping>   
-    
+    </servlet-mapping>      
     <servlet-mapping>
 		<servlet-name>ConfServlet</servlet-name>
 		<url-pattern>/conf</url-pattern>
+	</servlet-mapping>	
+	<servlet-mapping>
+		<servlet-name>QrcodeServlet</servlet-name>
+		<url-pattern>/s/qrcode</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>SsInfoServlet</servlet-name>
+		<url-pattern>/s/info</url-pattern>
 	</servlet-mapping>
 	<!--************* servlet-mapping end ******************-->
     
