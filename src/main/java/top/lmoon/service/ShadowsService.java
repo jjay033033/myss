@@ -16,7 +16,7 @@ public class ShadowsService {
 //			logger.error("",e);
 			e.printStackTrace();;
 		}
-		return JsonUtil.getFailedResponse("获取失败!");
+		return JsonUtil.getFailedResponse("获取ss失败!");
 	}
 
 }
