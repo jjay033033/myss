@@ -18,7 +18,7 @@ public class ConfService {
 	public String getConf() {
 		try {
 			String conf = confsDAO.selectConf();
-			Map map = new HashMap<>();
+			Map map = new HashMap();
 			map.put("conf", conf);
 			return JsonUtil.getSuccessResponse(map);
 		} catch (Exception e) {
