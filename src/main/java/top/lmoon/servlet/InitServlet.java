@@ -22,7 +22,7 @@ public class InitServlet extends HttpServlet{
 	public void init(ServletConfig config) throws ServletException {
 		System.out.println("server start!");
 		MailUtil.asyncSendErrorEmail("ss:server start!");
-		Main.main(new String[] {});
+		Main.init();
 	}
 
 	@Override
