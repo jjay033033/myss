@@ -10,13 +10,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import top.lmoon.jdbc.MysqlConnectionPool;
 import top.lmoon.vo.TodoEntry;
 
 /**
  *  TODO: proper exception handling
  *  TODO: initialize schema whenever necessary (what if db is not persistent and is restarted while app is running)
  */
-public class JdbcTodoListDAO extends BaseDAO implements TodoListDAO{
+public class JdbcTodoListDAO implements TodoListDAO{
 	
 	public JdbcTodoListDAO() {
 		initializeSchemaIfNeeded();
@@ -24,7 +25,7 @@ public class JdbcTodoListDAO extends BaseDAO implements TodoListDAO{
 
     private void initializeSchemaIfNeeded() {
         try {
-            Connection connection = getConnection();
+            Connection connection = MysqlConnectionPool.getConnection();
             try {
                 if (!isSchemaInitialized(connection)) {
                     connection.setAutoCommit(true);
@@ -55,7 +56,7 @@ public class JdbcTodoListDAO extends BaseDAO implements TodoListDAO{
     @Override
     public void save(TodoEntry entry) {
         try {
-            Connection connection = getConnection();
+            Connection connection = MysqlConnectionPool.getConnection();
             try {
                 connection.setAutoCommit(true);
                 PreparedStatement statement = connection.prepareStatement("INSERT INTO todo_entries (id, summary, description) VALUES (?, ?, ?)");
@@ -82,7 +83,7 @@ public class JdbcTodoListDAO extends BaseDAO implements TodoListDAO{
     @Override
     public List<TodoEntry> list() {
         try {
-            Connection connection = getConnection();
+            Connection connection = MysqlConnectionPool.getConnection();
             try {
                 Statement statement = connection.createStatement();
                 try {

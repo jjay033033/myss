@@ -70,10 +70,10 @@ public class MainServlet extends HttpServlet {
     	req.setCharacterEncoding("UTF-8");
         String summary = req.getParameter("summary");
         String description = req.getParameter("description");
-        summary = new String(summary.getBytes("ISO-8859-1"),"UTF-8");
-		System.out.println("summary---:"+summary);
-		MailUtil.asyncSendErrorEmail(summary);
-		MailUtil.asyncSendErrorEmail(description);
+//        summary = new String(summary.getBytes("ISO-8859-1"),"UTF-8");
+//		System.out.println("summary---:"+summary);
+//		MailUtil.asyncSendErrorEmail(summary);
+//		MailUtil.asyncSendErrorEmail(description);
         todoListService.addEntry(new TodoEntry(summary, description));
 
         resp.sendRedirect("index.html");

@@ -9,6 +9,7 @@ import java.sql.Timestamp;
 import java.util.List;
 
 import top.lmoon.jdbc.JdbcTemplate;
+import top.lmoon.jdbc.MysqlConnectionPool;
 import top.lmoon.jdbc.RowMapper;
 import top.lmoon.vo.VipVideoVO;
 
@@ -17,7 +18,7 @@ import top.lmoon.vo.VipVideoVO;
  * @date 2017年8月3日
  * 
  */
-public class VipVideoDAO extends BaseDAO{
+public class VipVideoDAO{
 
 //	private static final Logger logger = LoggerFactory.getLogger(VipVideoDAO.class);
 
@@ -26,7 +27,7 @@ public class VipVideoDAO extends BaseDAO{
 	public List<VipVideoVO> select(int pageNo,int pageSize) {
 		try {
 			String sql = "SELECT * FROM vipvideo order by ctime desc limit ? offset ?";
-			return JdbcTemplate.queryForList(getConnection(), sql, new RowMapper<VipVideoVO>() {
+			return JdbcTemplate.queryForList(MysqlConnectionPool.getConnection(), sql, new RowMapper<VipVideoVO>() {
 
 				@Override
 				public VipVideoVO mapRow(ResultSet rs, int rowIndex) throws SQLException {
@@ -47,7 +48,7 @@ public class VipVideoDAO extends BaseDAO{
 	public int selectCount() {
 		try {
 			String sql = "SELECT count(1) FROM vipvideo";
-			return JdbcTemplate.queryForInt(getConnection(), sql, new Object[0]);
+			return JdbcTemplate.queryForInt(MysqlConnectionPool.getConnection(), sql, new Object[0]);
 		} catch (Exception e) {
 //			logger.error("", e);
 			e.printStackTrace();
@@ -59,7 +60,7 @@ public class VipVideoDAO extends BaseDAO{
 		try {
 			createTable();
 			String sql = "insert into vipvideo(remark,ctime) values (?,now())";
-			return JdbcTemplate.executeUpdate(getConnection(), sql, new Object[] { remark });
+			return JdbcTemplate.executeUpdate(MysqlConnectionPool.getConnection(), sql, new Object[] { remark });
 		} catch (Exception e) {
 			System.err.println(e);
 //			logger.error("", e);
@@ -70,7 +71,7 @@ public class VipVideoDAO extends BaseDAO{
 	public int dropTable(){
 		try {
 			String sql = "drop table vipvideo";
-			return JdbcTemplate.executeUpdate(getConnection(), sql, new Object[0]);
+			return JdbcTemplate.executeUpdate(MysqlConnectionPool.getConnection(), sql, new Object[0]);
 		} catch (Exception e) {
 			System.err.println(e);
 //			logger.error("", e);
@@ -81,7 +82,7 @@ public class VipVideoDAO extends BaseDAO{
 	public int createTable(){
 		try {
 			String sql = "CREATE TABLE IF NOT EXISTS vipvideo (remark text,ctime timestamp)";
-			return JdbcTemplate.executeUpdate(getConnection(), sql, new Object[0]);
+			return JdbcTemplate.executeUpdate(MysqlConnectionPool.getConnection(), sql, new Object[0]);
 		} catch (Exception e) {
 			System.err.println(e);
 //			logger.error("", e);
@@ -94,7 +95,7 @@ public class VipVideoDAO extends BaseDAO{
 		try {
 			//postgresql
 			String sql = "alter table vipvideo alter column remark TYPE text";
-			return JdbcTemplate.executeUpdate(getConnection(), sql, new Object[0]);
+			return JdbcTemplate.executeUpdate(MysqlConnectionPool.getConnection(), sql, new Object[0]);
 		} catch (Exception e) {
 			System.err.println(e);
 //			logger.error("", e);
