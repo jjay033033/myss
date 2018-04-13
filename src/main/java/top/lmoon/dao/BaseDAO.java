@@ -19,14 +19,16 @@ public class BaseDAO {
 	public static String username = System.getenv("DB_USERNAME");
 	public static String password = System.getenv("DB_PASSWORD");
 	public static String database = System.getenv("DB_DATABASE");
-	public static String url = "jdbc:mysql://localhost:3306/%s?user=%s&password=%s&useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false";
+	public static String dbip = System.getenv("DB_IP");
+	public static String url = "jdbc:mysql://%s:3306/%s?user=%s&password=%s&useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false";
 
 	static {
 		// 之所以要使用下面这条语句，是因为要使用MySQL的驱动，所以我们要把它驱动起来，
 		// 可以通过Class.forName把它加载进去，也可以通过初始化来驱动起来，下面三种形式都可以
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			url = String.format(url, database, username, password);
+			url = String.format(url,dbip, database, username, password);
+			System.out.println("url:"+url);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
