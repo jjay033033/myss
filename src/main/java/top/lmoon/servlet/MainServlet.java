@@ -67,6 +67,7 @@ public class MainServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    	req.setCharacterEncoding("UTF-8");
         String summary = req.getParameter("summary");
         String description = req.getParameter("description");
         summary = new String(summary.getBytes("ISO-8859-1"),"UTF-8");
