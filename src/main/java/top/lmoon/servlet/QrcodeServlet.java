@@ -22,6 +22,7 @@ public class QrcodeServlet extends HttpServlet{
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.setCharacterEncoding("UTF-8");
 		String content = req.getParameter("url");
 //		BufferedOutputStream bos = new BufferedOutputStream(resp.getOutputStream());
 		qrcoder.encode(content, resp.getOutputStream());
