@@ -31,15 +31,6 @@ public class ConfService {
 	
 	public String updateConf(String conf) {
 		try {
-//			System.out.println("updateConf---:"+conf);
-//			System.out.println("updateConf1---:"+new String(conf.getBytes("UTF-8"),"GBK"));
-//			System.out.println("updateConf2---:"+new String(conf.getBytes("GB2312"),"UTF-8"));
-//			System.out.println("updateConf3---:"+new String(conf.getBytes("GBK"),"UTF-8"));
-//			System.out.println("updateConf4---:"+new String(conf.getBytes("ISO-8859-1"),"UTF-8"));
-//			System.out.println("updateConf5---:"+new String(conf.getBytes("ISO-8859-1"),"GBK"));
-//			conf = new String(conf.getBytes("ISO-8859-1"),"UTF-8");
-			System.out.println("updateConf---:"+conf);
-			MailUtil.asyncSendErrorEmail(conf);
 			int updateConf = confsDAO.updateConf(conf);
 			if(updateConf>0) {
 				XmlConfig.resetInstance();
