@@ -55,7 +55,7 @@ public class MailUtil {
 				try {
 					sendEmail(receiveMailAccount, sendUserName,"乱月同学", title, content);
 				} catch (Exception e) {
-					e.printStackTrace();
+					e.printStackTrace();System.out.println(ExceptionUtil.getExceptionMessage(e));
 				}
 			}
 		};

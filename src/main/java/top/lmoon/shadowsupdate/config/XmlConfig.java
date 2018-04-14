@@ -11,6 +11,7 @@ import top.lmoon.dao.ConfsDAO;
 import top.lmoon.shadowsupdate.SysConstants;
 import top.lmoon.shadowsupdate.util.XmlUtil;
 import top.lmoon.shadowsupdate.vo.ServerConfigVO;
+import top.lmoon.util.ExceptionUtil;
 
 public class XmlConfig {
 
@@ -65,7 +66,7 @@ public class XmlConfig {
 			ConfigListFactory.init();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			e.printStackTrace();System.out.println(ExceptionUtil.getExceptionMessage(e));
 //			logger.error("config.xml初始化失败:", e);
 		}
 	}
@@ -122,7 +123,7 @@ public class XmlConfig {
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			e.printStackTrace();System.out.println(ExceptionUtil.getExceptionMessage(e));
 //			logger.error("servers初始化失败:", e);
 		}
 	}

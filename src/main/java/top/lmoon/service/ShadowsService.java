@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import top.lmoon.shadowsupdate.ShadowsUpdate;
+import top.lmoon.util.ExceptionUtil;
 import top.lmoon.util.JsonUtil;
 
 public class ShadowsService {
@@ -14,7 +15,7 @@ public class ShadowsService {
 			return JsonUtil.getSuccessResponse(getss);
 		} catch (Exception e) {
 //			logger.error("",e);
-			e.printStackTrace();;
+			e.printStackTrace();System.out.println(ExceptionUtil.getExceptionMessage(e));;
 		}
 		return JsonUtil.getFailedResponse("获取ss账号 失败!");
 	}

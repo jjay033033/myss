@@ -128,7 +128,7 @@ public class JsonResponse {
 			}
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			e.printStackTrace();System.out.println(ExceptionUtil.getExceptionMessage(e));
 			MailUtil.asyncSendErrorEmail(e);
 		}
 	}

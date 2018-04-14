@@ -1,10 +1,12 @@
 package top.lmoon.jdbc;
 
-import com.mchange.v2.c3p0.ComboPooledDataSource;
-
 import java.beans.PropertyVetoException;
 import java.sql.Connection;
 import java.sql.SQLException;
+
+import com.mchange.v2.c3p0.ComboPooledDataSource;
+
+import top.lmoon.util.ExceptionUtil;
 
 /**
  * 
@@ -23,7 +25,7 @@ public class MysqlConnectionPool {
 //		try {
 //			Class.forName("com.mysql.jdbc.Driver");
 //		} catch (ClassNotFoundException e) {
-//			e.printStackTrace();
+//			e.printStackTrace();System.out.println(ExceptionUtil.getExceptionMessage(e));
 //		}
 		String username = System.getenv("DB_USERNAME");
 		String password = System.getenv("DB_PASSWORD");
@@ -34,7 +36,7 @@ public class MysqlConnectionPool {
 		try {
 			comboPooledDataSource.setDriverClass("com.mysql.jdbc.Driver");
 		} catch (PropertyVetoException e) {
-			e.printStackTrace();
+			e.printStackTrace();System.out.println(ExceptionUtil.getExceptionMessage(e));
 		}		
 		url = String.format(url, dbip, database);
 		comboPooledDataSource.setJdbcUrl(url);
@@ -51,7 +53,7 @@ public class MysqlConnectionPool {
 		try {
 			connection = comboPooledDataSource.getConnection();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			e.printStackTrace();System.out.println(ExceptionUtil.getExceptionMessage(e));
 		}
 		return connection;
 	}

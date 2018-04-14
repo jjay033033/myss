@@ -13,6 +13,7 @@ import org.apache.commons.lang3.StringUtils;
 import top.lmoon.shadowsupdate.util.UrlContent;
 import top.lmoon.shadowsupdate.vo.ConfVO;
 import top.lmoon.shadowsupdate.vo.ServerConfigVO;
+import top.lmoon.util.ExceptionUtil;
 
 /**
  * @author guozy
@@ -105,7 +106,7 @@ public class TextConfigListImpl implements ConfigList {
 				content = content.substring(encryptionEndIdx);
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			e.printStackTrace();System.out.println(ExceptionUtil.getExceptionMessage(e));
 			System.out.println(content);
 //			logger.error("",e);
 //			logger.error(content);

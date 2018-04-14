@@ -14,6 +14,7 @@ import javax.net.ssl.HttpsURLConnection;
 import top.lmoon.shadowsupdate.SysConstants;
 import top.lmoon.shadowsupdate.config.XmlConfig;
 import top.lmoon.shadowsupdate.vo.ServerConfigVO;
+import top.lmoon.util.ExceptionUtil;
 
 /**
  * @author guozy
@@ -88,7 +89,7 @@ public class UrlContent {
 			return sb.toString();
 		} catch (Exception e) {
 //			logger.error("连接失败："+urlStr, e);
-			e.printStackTrace();
+			e.printStackTrace();System.out.println(ExceptionUtil.getExceptionMessage(e));
 		} finally {
 			try {
 				if (br != null) {
@@ -98,7 +99,7 @@ public class UrlContent {
 					isr.close();
 				}
 			} catch (IOException e) {
-				e.printStackTrace();
+				e.printStackTrace();System.out.println(ExceptionUtil.getExceptionMessage(e));
 			}
 		}
 		return null;

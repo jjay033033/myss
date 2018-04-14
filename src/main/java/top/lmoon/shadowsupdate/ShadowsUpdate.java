@@ -22,6 +22,7 @@ import top.lmoon.shadowsupdate.config.ConfigListFactory;
 import top.lmoon.shadowsupdate.qrcode.Base64Coder;
 import top.lmoon.shadowsupdate.qrcode.QRcodeUtil;
 import top.lmoon.shadowsupdate.vo.ConfVO;
+import top.lmoon.util.ExceptionUtil;
 
 /**
  * @author LMoon
@@ -35,7 +36,8 @@ public class ShadowsUpdate {
 	// "/res/log4j.properties");
 	// }
 
-//	private static final Logger logger = Logger.getLogger(ShadowsUpdate.class);
+	// private static final Logger logger =
+	// Logger.getLogger(ShadowsUpdate.class);
 
 	private static List<Map<String, Object>> ssList = null;
 
@@ -53,7 +55,7 @@ public class ShadowsUpdate {
 			@Override
 			public void run() {
 				lastTime = System.currentTimeMillis();
-				ssList = getssFromServer();				
+				ssList = getssFromServer();
 			}
 		};
 
@@ -102,13 +104,16 @@ public class ShadowsUpdate {
 					list.add(map);
 				} catch (Exception e1) {
 					e1.printStackTrace();
-//					logger.error("", e1);
+					System.out.println(ExceptionUtil.getExceptionMessage(e1));
+					// logger.error("", e1);
 				}
 				// }
 			}
 
-			// List<ConfVO> oldList = getConfListFromJson(FileUtil.readFile(PATH_NAME));
-			// Map<String, Object> compareMap = ConfListUtil.CompareList(oldList, newList);
+			// List<ConfVO> oldList =
+			// getConfListFromJson(FileUtil.readFile(PATH_NAME));
+			// Map<String, Object> compareMap =
+			// ConfListUtil.CompareList(oldList, newList);
 
 			// List<ConfVO> list = (List<ConfVO>) compareMap.get("confList");
 			// String content = buildContent(list);
@@ -117,7 +122,8 @@ public class ShadowsUpdate {
 
 		} catch (Exception e) {
 			e.printStackTrace();
-//			logger.error("", e);
+			System.out.println(ExceptionUtil.getExceptionMessage(e));
+			// logger.error("", e);
 
 		}
 		return list;
@@ -139,7 +145,8 @@ public class ShadowsUpdate {
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-//					logger.error("", e);
+					System.out.println(ExceptionUtil.getExceptionMessage(e));
+					// logger.error("", e);
 					MailUtil.asyncSendErrorEmail(e);
 				}
 			}
@@ -177,8 +184,9 @@ public class ShadowsUpdate {
 			List<ConfVO> list = (List<ConfVO>) JSONArray.toCollection(confJa, ConfVO.class);
 			return list;
 		} catch (Exception e) {
-//			logger.error("getConfListFromJson:", e);
+			// logger.error("getConfListFromJson:", e);
 			e.printStackTrace();
+			System.out.println(ExceptionUtil.getExceptionMessage(e));
 			return null;
 		}
 

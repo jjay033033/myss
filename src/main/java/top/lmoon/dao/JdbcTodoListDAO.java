@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Random;
 
 import top.lmoon.jdbc.MysqlConnectionPool;
+import top.lmoon.util.ExceptionUtil;
 import top.lmoon.vo.TodoEntry;
 
 /**
@@ -97,7 +98,7 @@ public class JdbcTodoListDAO implements TodoListDAO{
 								summary = new String(summary.getBytes("ISO-8859-1"),"UTF-8");
 							} catch (UnsupportedEncodingException e) {
 								// TODO Auto-generated catch block
-								e.printStackTrace();
+								e.printStackTrace();System.out.println(ExceptionUtil.getExceptionMessage(e));
 							}
                             String description = rset.getString(3);
                             list.add(new TodoEntry(id, summary, description));

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import top.lmoon.shadowsupdate.vo.ConfVO;
+import top.lmoon.util.ExceptionUtil;
 
 public class QRcodeUtil {
 	
@@ -22,7 +23,7 @@ public class QRcodeUtil {
 						+ list.get(i).getServer() + ".jpg");
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				e.printStackTrace();System.out.println(ExceptionUtil.getExceptionMessage(e));
 //				logger.error("create QRCode:", e);
 			}
 		}

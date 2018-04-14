@@ -11,6 +11,7 @@ import java.util.List;
 import top.lmoon.jdbc.JdbcTemplate;
 import top.lmoon.jdbc.MysqlConnectionPool;
 import top.lmoon.jdbc.RowMapper;
+import top.lmoon.util.ExceptionUtil;
 import top.lmoon.vo.VipVideoVO;
 
 /**
@@ -40,7 +41,7 @@ public class VipVideoDAO{
 			}, new Object[]{pageSize,(pageNo-1)*pageSize});
 		} catch (Exception e) {
 //			logger.error("", e);
-			e.printStackTrace();
+			e.printStackTrace();System.out.println(ExceptionUtil.getExceptionMessage(e));
 			throw new RuntimeException(e);
 		}
 	}
@@ -51,7 +52,7 @@ public class VipVideoDAO{
 			return JdbcTemplate.queryForInt(MysqlConnectionPool.getConnection(), sql, new Object[0]);
 		} catch (Exception e) {
 //			logger.error("", e);
-			e.printStackTrace();
+			e.printStackTrace();System.out.println(ExceptionUtil.getExceptionMessage(e));
 			throw new RuntimeException(e);
 		}
 	}
@@ -86,7 +87,7 @@ public class VipVideoDAO{
 		} catch (Exception e) {
 			System.err.println(e);
 //			logger.error("", e);
-			e.printStackTrace();
+			e.printStackTrace();System.out.println(ExceptionUtil.getExceptionMessage(e));
 			throw new RuntimeException(e);
 		}
 	}

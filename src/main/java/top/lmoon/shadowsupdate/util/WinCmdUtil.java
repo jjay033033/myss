@@ -3,16 +3,19 @@ package top.lmoon.shadowsupdate.util;
 import java.io.IOException;
 import java.util.Scanner;
 
+import top.lmoon.util.ExceptionUtil;
+
 public class WinCmdUtil {
-	
-//	private static final Logger logger = LoggerFactory.getLogger(WinCmdUtil.class);
-	
+
+	// private static final Logger logger =
+	// LoggerFactory.getLogger(WinCmdUtil.class);
+
 	private static Process process = null;
-	
-	public static Process getProcess(){
+
+	public static Process getProcess() {
 		return process;
 	}
-	
+
 	public static boolean checkExeHasDone(String exeName) {
 		try {
 			Process pr = Runtime.getRuntime().exec("tasklist");
@@ -26,8 +29,9 @@ public class WinCmdUtil {
 			}
 			return false;
 		} catch (IOException e) {
-//			logger.error("restartExe:", e);
+			// logger.error("restartExe:", e);
 			e.printStackTrace();
+			System.out.println(ExceptionUtil.getExceptionMessage(e));
 			return true;
 		}
 	}
@@ -39,8 +43,9 @@ public class WinCmdUtil {
 			}
 			process = Runtime.getRuntime().exec("\"" + pathname + "\"");
 		} catch (IOException e) {
-//			logger.error("restartExe:", e);
+			// logger.error("restartExe:", e);
 			e.printStackTrace();
+			System.out.println(ExceptionUtil.getExceptionMessage(e));
 		}
 	}
 
@@ -59,24 +64,22 @@ public class WinCmdUtil {
 							buf.append(ch);
 						}
 					}
-					System.out.println(buf.toString().split("Console")[0]
-							.substring(exeName.length()));
-					Runtime.getRuntime().exec(
-							"tskill "
-									+ buf.toString().split("Console")[0]
-											.substring(exeName.length()));
+					System.out.println(buf.toString().split("Console")[0].substring(exeName.length()));
+					Runtime.getRuntime()
+							.exec("tskill " + buf.toString().split("Console")[0].substring(exeName.length()));
 				}
 			}
 		} catch (IOException e) {
-//			logger.error("kill:", e);
+			// logger.error("kill:", e);
 			e.printStackTrace();
+			System.out.println(ExceptionUtil.getExceptionMessage(e));
 		}
 	}
 
-	public static boolean isExistProcess(){
+	public static boolean isExistProcess() {
 		if (process != null) {
 			try {
-				//执行process.exitValue()，若报异常，则表明shadowsocks.exe程序仍在运行
+				// 执行process.exitValue()，若报异常，则表明shadowsocks.exe程序仍在运行
 				process.exitValue();
 				return false;
 			} catch (Exception e) {
@@ -85,5 +88,5 @@ public class WinCmdUtil {
 		}
 		return true;
 	}
-	
+
 }

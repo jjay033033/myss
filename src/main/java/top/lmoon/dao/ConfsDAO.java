@@ -6,6 +6,7 @@ package top.lmoon.dao;
 import top.lmoon.jdbc.JdbcTemplate;
 import top.lmoon.jdbc.MysqlConnectionPool;
 import top.lmoon.shadowsupdate.vo.ConfWebVO;
+import top.lmoon.util.ExceptionUtil;
 
 /**
  * @author LMoon
@@ -34,7 +35,7 @@ public class ConfsDAO {
 			return JdbcTemplate.queryForString(MysqlConnectionPool.getConnection(), sql, new Object[0]);
 		} catch (Exception e) {
 			// logger.error("",e);
-			e.printStackTrace();
+			e.printStackTrace();System.out.println(ExceptionUtil.getExceptionMessage(e));
 			throw new RuntimeException(e);
 		}
 	}
@@ -46,7 +47,7 @@ public class ConfsDAO {
 		} catch (Exception e) {
 			System.err.println(e);
 			// logger.error("", e);
-			e.printStackTrace();
+			e.printStackTrace();System.out.println(ExceptionUtil.getExceptionMessage(e));
 			throw new RuntimeException(e);
 		}
 	}
@@ -76,7 +77,7 @@ public class ConfsDAO {
 			return JdbcTemplate.executeUpdate(MysqlConnectionPool.getConnection(), sql, new Object[] { conf });
 		} catch (Exception e) {
 			// logger.error("",e);
-			e.printStackTrace();
+			e.printStackTrace();System.out.println(ExceptionUtil.getExceptionMessage(e));
 			throw new RuntimeException(e);
 		}
 	}

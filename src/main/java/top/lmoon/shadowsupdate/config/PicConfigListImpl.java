@@ -14,6 +14,7 @@ import top.lmoon.shadowsupdate.qrcode.ZxingQRcoder;
 import top.lmoon.shadowsupdate.util.UrlContent;
 import top.lmoon.shadowsupdate.vo.ConfVO;
 import top.lmoon.shadowsupdate.vo.ServerConfigVO;
+import top.lmoon.util.ExceptionUtil;
 
 /**
  * @author guozy
@@ -72,7 +73,7 @@ public class PicConfigListImpl implements ConfigList{
 				content = content.substring(serverEnd);
 			}
 		}catch(Exception e){
-			e.printStackTrace();
+			e.printStackTrace();System.out.println(ExceptionUtil.getExceptionMessage(e));
 //			logger.error("",e);
 		}
 		return list;
@@ -101,7 +102,7 @@ public class PicConfigListImpl implements ConfigList{
 		}catch(Exception e){
 //			logger.error("str:"+str,e);
 			System.out.println("str:"+str);
-			e.printStackTrace();
+			e.printStackTrace();System.out.println(ExceptionUtil.getExceptionMessage(e));
 		}
 		return null;
 	}

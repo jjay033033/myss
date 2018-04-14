@@ -31,6 +31,8 @@ import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.common.HybridBinarizer;
 
+import top.lmoon.util.ExceptionUtil;
+
 /**
  * @author LMoon
  * @date 2017年7月27日
@@ -54,7 +56,7 @@ public class ZxingQRcoder implements QRcoder {
 			Path path = FileSystems.getDefault().getPath(filepath);
 			MatrixToImageWriter.writeToPath(bitMatrix, format, path);// 输出图像
 		} catch (Exception e) {
-			e.printStackTrace();
+			e.printStackTrace();System.out.println(ExceptionUtil.getExceptionMessage(e));
 //			logger.error("", e);
 		}
 
@@ -78,7 +80,7 @@ public class ZxingQRcoder implements QRcoder {
 //			BufferedImage bufferedImage = MatrixToImageWriter.toBufferedImage(bitMatrix);
 //			ImageIO.write(bufferedImage, format, os);
 		} catch (Exception e) {
-			e.printStackTrace();
+			e.printStackTrace();System.out.println(ExceptionUtil.getExceptionMessage(e));
 //			logger.error("", e);
 		}
 	}
@@ -104,7 +106,7 @@ public class ZxingQRcoder implements QRcoder {
 			return result.getText();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			e.printStackTrace();System.out.println(ExceptionUtil.getExceptionMessage(e));
 		}
 		return null;
 	}
@@ -141,9 +143,9 @@ public class ZxingQRcoder implements QRcoder {
 //			System.out.println("图片中格式：  ");
 //			System.out.println("encode： " + result.getBarcodeFormat());
 //		} catch (IOException e) {
-//			e.printStackTrace();
+//			e.printStackTrace();System.out.println(ExceptionUtil.getExceptionMessage(e));
 //		} catch (NotFoundException e) {
-//			e.printStackTrace();
+//			e.printStackTrace();System.out.println(ExceptionUtil.getExceptionMessage(e));
 //		}
 //	}
 
