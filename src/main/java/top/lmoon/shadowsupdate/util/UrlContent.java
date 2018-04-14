@@ -86,6 +86,7 @@ public class UrlContent {
 					} 
 				}
 			}
+			System.out.println("sb:"+sb.toString());
 			return sb.toString();
 		} catch (Exception e) {
 //			logger.error("连接失败："+urlStr, e);
