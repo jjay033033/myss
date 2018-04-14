@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import top.lmoon.mail.MailUtil;
+import top.lmoon.shadowsupdate.ShadowsUpdate;
+import top.lmoon.shadowsupdate.config.XmlConfig;
 
 public class InitServlet extends HttpServlet{
 
@@ -21,6 +23,8 @@ public class InitServlet extends HttpServlet{
 	public void init(ServletConfig config) throws ServletException {
 		System.out.println("server start!");
 		MailUtil.asyncSendErrorEmail("ss:server start!");
+		XmlConfig.init();
+		ShadowsUpdate.start();
 	}
 
 	@Override

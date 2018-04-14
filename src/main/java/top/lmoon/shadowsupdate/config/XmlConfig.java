@@ -42,7 +42,7 @@ public class XmlConfig {
 
 	}
 
-	public static void init(String configPath,String outPath,String qrcodePath,String jsonFilePathName) {
+	public static void init() {
 //		XmlConfig.configPath = configPath;
 		load();
 //		ConfigLoader.init(outPath, qrcodePath, jsonFilePathName);;
