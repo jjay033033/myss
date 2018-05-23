@@ -90,7 +90,8 @@ public class UrlContent {
 			return sb.toString();
 		} catch (Exception e) {
 //			logger.error("连接失败："+urlStr, e);
-			e.printStackTrace();System.out.println(ExceptionUtil.getExceptionMessage(e));
+//			e.printStackTrace();
+			System.out.println("连接失败："+urlStr+"。"+ExceptionUtil.getExceptionMessage(e));
 		} finally {
 			try {
 				if (br != null) {
