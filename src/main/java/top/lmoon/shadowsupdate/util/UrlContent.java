@@ -94,7 +94,7 @@ public class UrlContent {
 		} catch (Exception e) {
 			// logger.error("连接失败："+urlStr, e);
 			// e.printStackTrace();
-			System.out.println("连接失败：" + urlStr + "。" + ExceptionUtil.getExceptionMessage(e));
+			System.out.println("getURLContent fail：" + urlStr + "..." + ExceptionUtil.getExceptionMessage(e));
 		} finally {
 			try {
 				if (br != null) {
