@@ -33,6 +33,7 @@ import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.common.HybridBinarizer;
 
+import top.lmoon.jdbc.CloseUtil;
 import top.lmoon.shadowsupdate.util.UrlContent;
 import top.lmoon.util.ExceptionUtil;
 
@@ -95,8 +96,9 @@ public class ZxingQRcoder implements QRcoder {
 	 */
 	@Override
 	public String decode(String urlStr) {
-		try {
-			InputStream inputStream = UrlContent.getUrlInputStream(urlStr);
+		InputStream inputStream = null;
+		try {			
+			inputStream = UrlContent.getUrlInputStream(urlStr);
 			BufferedImage image = ImageIO.read(inputStream);
 			LuminanceSource source = new BufferedImageLuminanceSource(image);
 			Binarizer binarizer = new HybridBinarizer(source);
@@ -110,6 +112,8 @@ public class ZxingQRcoder implements QRcoder {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();System.out.println(ExceptionUtil.getExceptionMessage(e));
+		}finally {
+			CloseUtil.closeSilently(inputStream);
 		}
 		return null;
 	}

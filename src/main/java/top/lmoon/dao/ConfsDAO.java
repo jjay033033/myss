@@ -30,7 +30,7 @@ public class ConfsDAO {
 			// if (rs.next()) {
 			// conf = rs.getString("conf");
 			// }
-			createTable();
+//			createTable();
 			String sql = "SELECT conf FROM confs where id=1";
 			return JdbcTemplate.queryForString(MysqlConnectionPool.getConnection(), sql, new Object[0]);
 		} catch (Exception e) {
