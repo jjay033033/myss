@@ -45,6 +45,8 @@ public class MysqlConnectionPool {
 		// 下面是设置连接池的一配置
 		comboPooledDataSource.setMaxPoolSize(20);
 		comboPooledDataSource.setMinPoolSize(3);
+		comboPooledDataSource.setTestConnectionOnCheckin(false);
+		comboPooledDataSource.setTestConnectionOnCheckout(true);
 
 	}
 
