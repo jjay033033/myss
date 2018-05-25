@@ -5,8 +5,10 @@ package top.lmoon.shadowsupdate.util;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -22,76 +24,77 @@ import top.lmoon.util.ExceptionUtil;
  * 
  */
 public class UrlContent {
-	
-//	private static final Logger logger = LoggerFactory.getLogger(UrlContent.class);
-	
+
+	// private static final Logger logger =
+	// LoggerFactory.getLogger(UrlContent.class);
+
 	private static final int CONNECT_TIME_OUT = 3000;
-	
-	public static String getURLContent(ServerConfigVO vo){
-		return getURLContent(vo.getUrl(), vo.getBegin(), vo.getEnd(),new UrlHandler() {
-			
+
+	public static String getURLContent(ServerConfigVO vo) {
+		return getURLContent(vo.getUrl(), vo.getBegin(), vo.getEnd(), new UrlHandler() {
+
 			@Override
 			public void changeUrl(String oldUrl, String newUrl) {
 				FileUtil.writeFileReplaceWord(SysConstants.CONFIG_PATH, oldUrl, newUrl);
 				XmlConfig.resetInstance();
-//				logger.info("'config.xml' changed!: "+oldUrl+" to "+newUrl);
+				// logger.info("'config.xml' changed!: "+oldUrl+" to "+newUrl);
 			}
 		});
 	}
-	
-	private static String getURLContent(String urlStr,String beginStr,String endStr,UrlHandler urlHandler) {
+
+	private static String getURLContent(String urlStr, String beginStr, String endStr, UrlHandler urlHandler) {
 		InputStreamReader isr = null;
 		BufferedReader br = null;
 		StringBuffer sb = new StringBuffer();
 		try {
 			UrlInfo urlInfo = normalizeUrl(urlStr);
 			URL url = new URL(urlInfo.getUrl());
-			HttpURLConnection connection = (HttpURLConnection)url.openConnection();
-			setConnectionProperties(connection,urlInfo.isHttps());
-			connection.connect();  
+			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+			setConnectionProperties(connection, urlInfo.isHttps());
+			connection.connect();
 			int code = connection.getResponseCode();
-			//301重定向
-			if(code==301){				
+			// 301重定向
+			if (code == 301) {
 				connection.disconnect();
-				String urlStrNew = connection.getHeaderField("Location"); 
-				if(StringUtil.isNullOrBlank(urlStrNew)){
+				String urlStrNew = connection.getHeaderField("Location");
+				if (StringUtil.isNullOrBlank(urlStrNew)) {
 					return null;
 				}
 				UrlInfo urlInfoNew = normalizeUrl(urlStrNew);
 				urlStrNew = urlInfoNew.getUrl();
-				urlHandler.changeUrl(urlStr, urlStrNew);				
+				urlHandler.changeUrl(urlStr, urlStrNew);
 				url = new URL(urlStrNew);
-				connection = (HttpURLConnection)url.openConnection();
-				setConnectionProperties(connection,urlInfoNew.isHttps());
+				connection = (HttpURLConnection) url.openConnection();
+				setConnectionProperties(connection, urlInfoNew.isHttps());
 				connection.connect();
 			}
-            
+
 			isr = new InputStreamReader(connection.getInputStream(), "utf-8");
 			br = new BufferedReader(isr);
 			String buf = null;
 			boolean begin = false;
-			if(beginStr==null||beginStr.isEmpty()){
+			if (beginStr == null || beginStr.isEmpty()) {
 				begin = true;
 			}
 			while ((buf = br.readLine()) != null) {
-				if(begin){
+				if (begin) {
 					sb.append(buf.trim());
-					if((endStr!=null&&!endStr.isEmpty()) && buf.contains(endStr)){
+					if ((endStr != null && !endStr.isEmpty()) && buf.contains(endStr)) {
 						break;
 					}
-				}else{
+				} else {
 					if (buf.contains(beginStr)) {
 						begin = true;
 						sb.append(buf.trim());
-					} 
+					}
 				}
 			}
-//			System.out.println("sb:"+sb.toString());
+			// System.out.println("sb:"+sb.toString());
 			return sb.toString();
 		} catch (Exception e) {
-//			logger.error("连接失败："+urlStr, e);
-//			e.printStackTrace();
-			System.out.println("连接失败："+urlStr+"。"+ExceptionUtil.getExceptionMessage(e));
+			// logger.error("连接失败："+urlStr, e);
+			// e.printStackTrace();
+			System.out.println("连接失败：" + urlStr + "。" + ExceptionUtil.getExceptionMessage(e));
 		} finally {
 			try {
 				if (br != null) {
@@ -101,69 +104,97 @@ public class UrlContent {
 					isr.close();
 				}
 			} catch (IOException e) {
-				e.printStackTrace();System.out.println(ExceptionUtil.getExceptionMessage(e));
+				e.printStackTrace();
+				System.out.println(ExceptionUtil.getExceptionMessage(e));
 			}
 		}
 		return null;
 	}
-	
-	private static class UrlInfo{
+
+	private static class UrlInfo {
 		private String url;
 		private boolean https;
+
 		public String getUrl() {
 			return url;
 		}
+
 		public void setUrl(String url) {
 			this.url = url;
 		}
+
 		public boolean isHttps() {
 			return https;
 		}
+
 		public void setHttps(boolean https) {
 			this.https = https;
 		}
 
 	}
-	
+
 	/**
 	 * 规范化url地址，默认http
+	 * 
 	 * @param url
 	 * @return
 	 */
-	private static UrlInfo normalizeUrl(String url){
+	private static UrlInfo normalizeUrl(String url) {
 		UrlInfo ui = new UrlInfo();
 		String[] urls = url.split("://");
-		if(urls.length<2){
-			ui.setUrl("http://"+url);
+		if (urls.length < 2) {
+			ui.setUrl("http://" + url);
 			ui.setHttps(false);
-		}else{
-			if("http".equals(urls[0])){
+		} else {
+			if ("http".equals(urls[0])) {
 				ui.setHttps(false);
-			}else if("https".equals(urls[0])){
+			} else if ("https".equals(urls[0])) {
 				ui.setHttps(true);
 			}
 			ui.setUrl(url);
 		}
 		return ui;
 	}
-	
-	private static void setConnectionProperties(HttpURLConnection conn,boolean isHttps){
+
+	public static InputStream getUrlInputStream(String urlStr) {
+		UrlInfo urlInfo = normalizeUrl(urlStr);
+		try {
+			URL url = new URL(urlInfo.getUrl());
+			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+			setConnectionProperties(connection, urlInfo.isHttps());
+			return connection.getInputStream();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("getUrlInputStream失败：" + urlStr + "。" + ExceptionUtil.getExceptionMessage(e));
+		}
+		return null;
+	}
+
+	/**
+	 * fixed 2 java connect web bug:<br>
+	 * 1.Server returned HTTP response code: 403 for URL<br>
+	 * 2.SSL connect error
+	 * @param conn
+	 * @param isHttps
+	 */
+	private static void setConnectionProperties(HttpURLConnection conn, boolean isHttps) {
 		conn.setRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 5.0; Windows NT; DigExt)");
-		conn.setInstanceFollowRedirects(true);  		
+		conn.setInstanceFollowRedirects(true);
 		conn.setConnectTimeout(CONNECT_TIME_OUT);
-		if(isHttps){
+		if (isHttps) {
 			HttpsURLConnection hsc = (HttpsURLConnection) conn;
 			hsc.setSSLSocketFactory(new MySSLSocketFactory());
-//			hsc.setHostnameVerifier(new HostnameVerifier() {
-//				
-//				@Override
-//				public boolean verify(String arg0, SSLSession arg1) {
-//					// TODO Auto-generated method stub
-//					return true;
-//				}
-//			});
+			// hsc.setHostnameVerifier(new HostnameVerifier() {
+			//
+			// @Override
+			// public boolean verify(String arg0, SSLSession arg1) {
+			// // TODO Auto-generated method stub
+			// return true;
+			// }
+			// });
 		}
-//		connection.setRequestMethod("GET"); 
+		// connection.setRequestMethod("GET");
 	}
 
 }

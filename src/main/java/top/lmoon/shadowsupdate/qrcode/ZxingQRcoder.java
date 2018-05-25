@@ -7,7 +7,9 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
@@ -31,6 +33,7 @@ import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.common.HybridBinarizer;
 
+import top.lmoon.shadowsupdate.util.UrlContent;
 import top.lmoon.util.ExceptionUtil;
 
 /**
@@ -93,8 +96,8 @@ public class ZxingQRcoder implements QRcoder {
 	@Override
 	public String decode(String urlStr) {
 		try {
-			URL url = new URL(urlStr);
-			BufferedImage image = ImageIO.read(url.openStream());
+			InputStream inputStream = UrlContent.getUrlInputStream(urlStr);
+			BufferedImage image = ImageIO.read(inputStream);
 			LuminanceSource source = new BufferedImageLuminanceSource(image);
 			Binarizer binarizer = new HybridBinarizer(source);
 			BinaryBitmap binaryBitmap = new BinaryBitmap(binarizer);
