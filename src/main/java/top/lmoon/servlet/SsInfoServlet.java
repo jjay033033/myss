@@ -25,6 +25,7 @@ public class SsInfoServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
+		resp.setContentType("text/html;charset=UTF-8");
 		String method = req.getParameter("method");
 		PrintWriter writer = resp.getWriter();
 		if (method != null && "getss".equals(method)) {
