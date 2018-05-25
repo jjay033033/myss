@@ -179,7 +179,9 @@ public class UrlContent {
 	 * @param isHttps
 	 */
 	private static void setConnectionProperties(HttpURLConnection conn, boolean isHttps) {
-		conn.setRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 5.0; Windows NT; DigExt)");
+//		conn.setRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 5.0; Windows NT; DigExt)");
+		conn.setRequestProperty("X-Forwarded-For", "121.33.201.170");
+		conn.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 5.1) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.142 Safari/535.19");
 		conn.setInstanceFollowRedirects(true);
 		conn.setConnectTimeout(CONNECT_TIME_OUT);
 		if (isHttps) {
