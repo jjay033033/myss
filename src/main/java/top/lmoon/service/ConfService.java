@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import top.lmoon.dao.ConfsDAO;
-import top.lmoon.mail.MailUtil;
 import top.lmoon.shadowsupdate.config.XmlConfig;
 import top.lmoon.util.ExceptionUtil;
 import top.lmoon.util.JsonUtil;
