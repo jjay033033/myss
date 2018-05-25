@@ -34,8 +34,8 @@ public class ConfServlet extends HttpServlet {
 		PrintWriter out = null;
 		try {
 			req.setCharacterEncoding("UTF-8");
-//			resp.setCharacterEncoding("UTF-8");
-			resp.setContentType("text/javascript;charset=UTF-8");
+			resp.setCharacterEncoding("UTF-8");
+//			resp.setContentType("text/html;charset=UTF-8");
 			String action = ParamUtil.getParameter(req, "action", "");
 			String conf = ParamUtil.getParameter(req, "conf", "");
 			out = resp.getWriter();
