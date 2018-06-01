@@ -51,7 +51,7 @@ public class MysqlConnectionPool {
 		// of 'wait_timeout'.
 		comboPooledDataSource.setTestConnectionOnCheckin(false);
 		comboPooledDataSource.setTestConnectionOnCheckout(true);
-
+		comboPooledDataSource.setPreferredTestQuery("SELECT 1");
 	}
 
 	public static Connection getConnection() {
