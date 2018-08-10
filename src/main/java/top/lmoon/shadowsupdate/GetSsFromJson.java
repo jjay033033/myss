@@ -62,10 +62,10 @@ public class GetSsFromJson {
 		formParams.put("b", b);		
 		formParams.put("c", c);
 		Map<String, String> headers = new HashMap<String, String>();
-		headers.put(":authority", "free-ss.site");
-		headers.put(":method", "POST");
-		headers.put(":path", "/data.php");
-		headers.put(":scheme", "https");
+//		headers.put(":authority", "free-ss.site");
+//		headers.put(":method", "POST");
+//		headers.put(":path", "/data.php");
+//		headers.put(":scheme", "https");
 		headers.put("origin", "https://free-ss.site");
 		headers.put("referer", "https://free-ss.site/");
 
