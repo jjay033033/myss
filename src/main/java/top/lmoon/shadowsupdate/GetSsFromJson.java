@@ -56,12 +56,12 @@ public class GetSsFromJson {
 		String c = strs[2];
 		
 		String url = "https://free-ss.site/data.php";
-		Map<String, String> params = new HashMap<>();
-		Map<String, String> formParams = new HashMap<>();		
+		Map<String, String> params = new HashMap<String, String>();
+		Map<String, String> formParams = new HashMap<String, String>();		
 		formParams.put("a", a);
 		formParams.put("b", b);		
 		formParams.put("c", c);
-		Map<String, String> headers = new HashMap<>();
+		Map<String, String> headers = new HashMap<String, String>();
 		headers.put(":authority", "free-ss.site");
 		headers.put(":method", "POST");
 		headers.put(":path", "/data.php");
