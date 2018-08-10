@@ -393,7 +393,7 @@ public class HttpUtil {
 	public static boolean download(String urlStr, String fileName) {
 		System.out.println(urlStr);
 		System.out.println(fileName);
-		// 下载网络文件
+		// 下载网络文件;
 		int bytesum = 0;
 		int byteread = 0;
 		InputStream inStream = null;
