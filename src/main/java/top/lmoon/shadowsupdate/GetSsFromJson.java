@@ -69,7 +69,7 @@ public class GetSsFromJson {
 		headers.put("origin", "https://free-ss.site");
 		headers.put("referer", "https://free-ss.site/");
 
-		String str = HttpUtil.postForBaiduCookies(url, params, formParams, headers);
+		String str = HttpUtil.post(url, params, formParams, headers);
 //		String a = "bfd153389ce78a61";
 //		String b = "c17b952ea46fd803";
 //		String c = "10b5b4075947ef97";

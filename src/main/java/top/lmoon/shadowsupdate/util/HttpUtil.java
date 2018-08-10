@@ -192,6 +192,10 @@ public class HttpUtil {
 	public static String post(String url, Map params, Map formParams) {
 		return post(url, params, formParams, connectTimeout, readTimeout, charset);
 	}
+	
+	public static String post(String url, Map params, Map formParams, Map<String, String> headers) {
+		return invokeUrl(url, params, formParams, headers, connectTimeout, readTimeout, charset, HttpMethod.POST, false);
+	}
 
 	public static String postForBaiduCookies(String url, Map params, Map formParams, Map<String, String> headers) {
 		return invokeUrl(url, params, formParams, headers, connectTimeout, readTimeout, charset, HttpMethod.POST, true);
