@@ -24,7 +24,7 @@ public class InitServlet extends HttpServlet{
 		System.out.println("server start!");
 		MailUtil.asyncSendErrorEmail("ss:server start!");
 		XmlConfig.init();
-		ShadowsUpdate.start();
+//		ShadowsUpdate.start();
 	}
 
 	@Override
