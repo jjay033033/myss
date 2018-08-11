@@ -127,7 +127,7 @@ public class GetSsFromJson {
 		result[0] = a;
 		result[1] = b;
 		result[2] = c;
-		result[4] = setCookie;
+		result[3] = setCookie;
 		return result;
 	}
 	
