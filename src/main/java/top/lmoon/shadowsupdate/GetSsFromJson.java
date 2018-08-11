@@ -124,6 +124,10 @@ public class GetSsFromJson {
 		System.out.println(a);
 		System.out.println(b);
 		System.out.println(c);
+		System.out.println(setCookie);
+		
+		setCookie = setCookie.substring(0, setCookie.indexOf(";"));
+		System.out.println(setCookie);
 		result[0] = a;
 		result[1] = b;
 		result[2] = c;
@@ -132,7 +136,10 @@ public class GetSsFromJson {
 	}
 	
 	public static void main(String[] args) throws Exception {
-		System.out.println(getSsJson());
+		String setCookie = "__cfduid=dee67780f4389750aa60c19186cceca551533974288; expires=Sun, 11-Aug-19 07:58:08 GMT; path=/; domain=.free-ss.site; HttpOnly; Secure";
+		setCookie = setCookie.substring(0, setCookie.indexOf(";"));
+		System.out.println(setCookie);
+//		System.out.println(getSsJson());
 //		String str = FileUtil.readFile("f:/a.txt");
 ////		str = str.replace("\r\n", "");
 //		String regex = "/\\*([^\\*]*)\\*/";

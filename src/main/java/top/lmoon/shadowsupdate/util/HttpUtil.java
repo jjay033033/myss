@@ -85,6 +85,7 @@ public class HttpUtil {
 			uUrl = new URL(url);
 			System.out.println("----------url:" + url);
 			System.out.println("----------formParamsStr:" + formParamsStr);
+			System.out.println("----------headers:" + headers);
 			conn = (HttpURLConnection) uUrl.openConnection();
 			conn.setRequestProperty("content-type", "application/x-www-form-urlencoded");
 			conn.setRequestProperty("User-Agent",
