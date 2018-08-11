@@ -12,6 +12,7 @@ import javax.crypto.spec.SecretKeySpec;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 
+import top.lmoon.shadowsupdate.util.HttpResult;
 import top.lmoon.shadowsupdate.util.HttpUtil;
 import top.lmoon.shadowsupdate.vo.ConfVO;
 import top.lmoon.util.ExceptionUtil;
@@ -54,6 +55,7 @@ public class GetSsFromJson {
 		String a = strs[0];
 		String b = strs[1];
 		String c = strs[2];
+		String setCookie = strs[3];
 		
 		String url = "https://free-ss.site/data.php";
 		Map<String, String> params = new HashMap<String, String>();
@@ -70,8 +72,9 @@ public class GetSsFromJson {
 		headers.put("referer", "https://free-ss.site/");
 		
 		headers.put("x-requested-with", "XMLHttpRequest");
-		
+		headers.put("Cookie", setCookie);
 		String str = HttpUtil.post(url, params, formParams, headers);
+
 //		String a = "bfd153389ce78a61";
 //		String b = "c17b952ea46fd803";
 //		String c = "10b5b4075947ef97";
@@ -87,7 +90,7 @@ public class GetSsFromJson {
 	}
 	
 	public static String[] getABC() throws Exception{
-		String[] result = new String[3];
+		String[] result = new String[4];
 		String url = "https://free-ss.site";
 //		Map<String, String> params = new HashMap<>();
 //		Map<String, String> formParams = new HashMap<>();
@@ -99,7 +102,9 @@ public class GetSsFromJson {
 //		headers.put("origin", "https://free-ss.site");
 //		headers.put("referer", "https://free-ss.site/");
 //		headers.put("c", "10b5b4075947ef97");
-		String str = HttpUtil.get(url);
+		HttpResult hr = HttpUtil.getForSetCookies(url);
+		String setCookie = hr.getSetCookie();
+		String str = hr.getContent();
 		str = str.replaceAll("/\\*([^\\*]*)\\*/", "");
 		
 		int begin = str.indexOf("else{var");
@@ -122,6 +127,7 @@ public class GetSsFromJson {
 		result[0] = a;
 		result[1] = b;
 		result[2] = c;
+		result[4] = setCookie;
 		return result;
 	}
 	

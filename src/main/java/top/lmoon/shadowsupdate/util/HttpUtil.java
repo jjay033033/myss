@@ -45,11 +45,12 @@ public class HttpUtil {
 
 	private static String invokeUrl(String url, Map params, Map formParams, Map<String, String> headers,
 			int connectTimeout, int readTimeout, String encoding, HttpMethod method) {
-		return invokeUrl(url, params, formParams, headers, connectTimeout, readTimeout, encoding, method, false);
+		return invokeUrl(url, params, formParams, headers, connectTimeout, readTimeout, encoding, method, false).getContent();
 	}
 
-	private static String invokeUrl(String url, Map params, Map formParams, Map<String, String> headers,
+	private static HttpResult invokeUrl(String url, Map params, Map formParams, Map<String, String> headers,
 			int connectTimeout, int readTimeout, String encoding, HttpMethod method, boolean returnCookies) {
+		HttpResult hr = new HttpResult();
 		// 构造请求参数字符串
 		StringBuilder paramsStr = null;
 		StringBuilder formParamsStr = null;
@@ -113,8 +114,9 @@ public class HttpUtil {
 			}
 //			System.out.println(conn.getResponseMessage());
 			if (returnCookies) {
-				System.out.println(conn.getHeaderField("set-cookie"));
-				return conn.getHeaderField("set-cookie");
+				String headerField = conn.getHeaderField("set-cookie");
+				System.out.println(headerField);
+				hr.setSetCookie(headerField);
 			}
 			
 			// 接收返回结果
@@ -127,7 +129,9 @@ public class HttpUtil {
 				}
 			}
 			System.out.println(result.toString());
-			return result.toString();
+			hr.setSuccess(true);
+			hr.setContent(result.toString());
+			return hr;
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println(ExceptionUtil.getExceptionMessage(e));
@@ -165,7 +169,8 @@ public class HttpUtil {
 				conn.disconnect();
 			}
 		}
-		return null;
+		hr.setSuccess(false);
+		return hr;
 	}
 
 	/**
@@ -194,10 +199,10 @@ public class HttpUtil {
 	}
 	
 	public static String post(String url, Map params, Map formParams, Map<String, String> headers) {
-		return invokeUrl(url, params, formParams, headers, connectTimeout, readTimeout, charset, HttpMethod.POST, false);
+		return invokeUrl(url, params, formParams, headers, connectTimeout, readTimeout, charset, HttpMethod.POST, false).getContent();
 	}
 
-	public static String postForBaiduCookies(String url, Map params, Map formParams, Map<String, String> headers) {
+	public static HttpResult postForSetCookies(String url, Map params, Map formParams, Map<String, String> headers) {
 		return invokeUrl(url, params, formParams, headers, connectTimeout, readTimeout, charset, HttpMethod.POST, true);
 	}
 
@@ -242,6 +247,15 @@ public class HttpUtil {
 	public static String get(String url, Map params, int connectTimeout, int readTimeout, String charset) {
 		return get(url, params, null, connectTimeout, readTimeout, charset);
 	}
+	
+	public static HttpResult getForSetCookies(String url) {
+		return getForSetCookies(url, null, null, null);
+	}
+	
+	public static HttpResult getForSetCookies(String url, Map params, Map formParams, Map<String, String> headers) {
+		return invokeUrl(url, params, formParams, headers, connectTimeout, readTimeout, charset, HttpMethod.GET, true);
+	}
+
 
 	/**
 	 * GET方法提交Http请求，语义为“查询”
