@@ -83,10 +83,10 @@ public class GetSsFromJson {
 //		user-agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36
 //		x-requested-with: XMLHttpRequest
 		
-//		headers.put(":authority", "free-ss.site");
-//		headers.put(":method", "POST");
-//		headers.put(":path", "/data.php");
-//		headers.put(":scheme", "https");
+		headers.put(":authority", "free-ss.site");
+		headers.put(":method", "POST");
+		headers.put(":path", "/data.php");
+		headers.put(":scheme", "https");
 		headers.put("origin", "https://free-ss.site");
 		headers.put("referer", "https://free-ss.site/");
 		headers.put("content-type", "application/x-www-form-urlencoded; charset=UTF-8");
