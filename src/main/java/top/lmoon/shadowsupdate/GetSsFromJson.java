@@ -127,8 +127,8 @@ public class GetSsFromJson {
 		System.out.println(c);
 		System.out.println(setCookie);
 		
-//		setCookie = setCookie.substring(0, setCookie.indexOf(";"));
-//		System.out.println(setCookie);
+		setCookie = setCookie.substring(0, setCookie.indexOf(";"));
+		System.out.println(setCookie);
 		result[0] = a;
 		result[1] = b;
 		result[2] = c;
