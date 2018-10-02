@@ -65,13 +65,38 @@ public class GetSsFromJson {
 		formParams.put("b", b);		
 		formParams.put("c", c);
 		Map<String, String> headers = new HashMap<String, String>();
+		
+//		:authority: free-ss.site
+//		:method: POST
+//		:path: /data.php
+//		:scheme: https
+//		accept: */*
+//		accept-encoding: gzip, deflate, br
+//		accept-language: zh-CN,zh;q=0.9,zh-TW;q=0.8
+//		cache-control: no-cache
+//		content-length: 56
+//		content-type: application/x-www-form-urlencoded; charset=UTF-8
+//		cookie: __cfduid=db74c08218e8bbba70ce90c54439f77ef1538468968
+//		origin: https://free-ss.site
+//		pragma: no-cache
+//		referer: https://free-ss.site/
+//		user-agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36
+//		x-requested-with: XMLHttpRequest
+		
 //		headers.put(":authority", "free-ss.site");
 //		headers.put(":method", "POST");
 //		headers.put(":path", "/data.php");
 //		headers.put(":scheme", "https");
 		headers.put("origin", "https://free-ss.site");
 		headers.put("referer", "https://free-ss.site/");
-		
+		headers.put("content-type", "application/x-www-form-urlencoded; charset=UTF-8");
+		headers.put("content-length", "56");
+		headers.put("accept-encoding", "gzip, deflate, br");
+		headers.put("accept", "*/*");
+		headers.put("accept-language", "zh-CN,zh;q=0.9,zh-TW;q=0.8");
+		headers.put("cache-control", "no-cache");
+		headers.put("pragma", "no-cache");
+
 		headers.put("x-requested-with", "XMLHttpRequest");
 		headers.put("Cookie", setCookie);
 		String str = HttpUtil.post(url, params, formParams, headers);

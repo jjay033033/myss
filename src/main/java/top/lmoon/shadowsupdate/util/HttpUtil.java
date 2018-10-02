@@ -89,7 +89,7 @@ public class HttpUtil {
 			conn = (HttpURLConnection) uUrl.openConnection();
 			conn.setRequestProperty("content-type", "application/x-www-form-urlencoded");
 			conn.setRequestProperty("User-Agent",
-					"Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.101 Safari/537.36");
+					"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36");
 			conn.setRequestMethod(method.toString());
 			conn.setDoOutput(true);
 			conn.setDoInput(true);
