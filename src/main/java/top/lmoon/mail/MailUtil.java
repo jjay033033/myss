@@ -28,18 +28,13 @@ public class MailUtil {
 	// 对于开启了独立密码的邮箱, 这里的邮箱密码必需使用这个独立密码（授权码）。
 	private static String myEmailAccount = null;
 	private static String myEmailPassword = null;
-	// Gzy^033033
-	// public static String myEmailAccount = "guozy@staff.tianya.cn";
-	// public static String myEmailPassword = "Gzy^033033";
 
 	// 发件人邮箱的 SMTP 服务器地址, 必须准确, 不同邮件服务器地址不同, 一般(只是一般, 绝非绝对)格式为: smtp.xxx.com
 	// 网易163邮箱的 SMTP 服务器地址为: smtp.163.com
-	// public static String myEmailSMTPHost = "smtp.staff.tianya.cn";
 	private static String myEmailSMTPHost = null;
 
 	// 收件人邮箱（替换为自己知道的有效邮箱）
 	public static String receiveMailAccount = null;
-	// private static String receiveMailAccount = "guozy@staff.tianya.cn";
 	
 	private static Properties pMail = new Properties();
 	private static Properties pUser = new Properties();
